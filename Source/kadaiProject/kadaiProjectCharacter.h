@@ -82,6 +82,12 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+private:
+	//Input設定
+	void SetupInput();
 
+	//Input Eventイベントハンドラー関数
+	void PressedB();//Bキーを押したら
+	//void ReleasedB();//Bキーを離したら
 };
 

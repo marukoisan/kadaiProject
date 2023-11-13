@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Kismet/GameplayStatics.h" //追加
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -107,4 +108,35 @@ void AkadaiProjectCharacter::SetHasRifle(bool bNewHasRifle)
 bool AkadaiProjectCharacter::GetHasRifle()
 {
 	return bHasRifle;
+}
+
+void AkadaiProjectCharacter::SetupInput()//キー入力のセットアップ
+{
+	//入力を有効にする
+	EnableInput(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+
+	//BキーのPressedとReleasedをバインドする
+	InputComponent->BindKey(EKeys::B, IE_Pressed, this, &AkadaiProjectCharacter::PressedB);
+	//InputComponent->BindKey(EKeys::B, IE_Released, this, &AkadaiProjectCharacter::ReleasedB);
+
+}
+
+void AkadaiProjectCharacter::PressedB()//キーが入力された時の結果
+{
+	//アクターのパス。BP_Actorを生成したい場合後ろに .BP_Actor_C を追加する
+	FString aAssetPath = "/Script/CoreUObject.Class'/Script/kadaiProject.DartsActor'";
+
+	//アセットを読み込む(同期)
+	TSubclassOf<AActor>aActorClass = TSoftClassPtr<AActor>
+		(FSoftObjectPath(*aAssetPath)).LoadSynchronous();
+
+	//位置情報
+	FTransform aTransForm;
+	
+	if (aActorClass != nullptr) 
+	{
+		//スポーン
+		TObjectPtr<AActor> aActor = GetWorld()->SpawnActor<AActor>(aActorClass, aTransForm);
+	}
+
 }
