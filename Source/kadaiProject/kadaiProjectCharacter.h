@@ -1,10 +1,13 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
-
+#include "InputAction.h"                        // 追加
+#include "InputActionValue.h"                   // 追加
+#include "EnhancedInputComponent.h"             // 追加
+#include "EnhancedInputSubsystems.h"            // 追加
+#include "DartsActor.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "InputActionValue.h"
 #include "kadaiProjectCharacter.generated.h"
 
 class UInputComponent;
@@ -40,6 +43,7 @@ class AkadaiProjectCharacter : public ACharacter
 	class UInputAction* MoveAction;
 
 	
+
 public:
 	AkadaiProjectCharacter();
 
@@ -63,6 +67,9 @@ public:
 	/** Getter for the bool */
 	UFUNCTION(BlueprintCallable, Category = Weapon)
 	bool GetHasRifle();
+
+
+
 
 protected:
 	/** Called for movement input */
@@ -89,5 +96,9 @@ private:
 	//Input Eventイベントハンドラー関数
 	void PressedB();//Bキーを押したら
 	//void ReleasedB();//Bキーを離したら
+
+		//メンバ変数
+	ADartsActor* something;
+
 };
 

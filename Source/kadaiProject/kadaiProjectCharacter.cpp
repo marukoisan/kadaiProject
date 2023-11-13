@@ -10,6 +10,8 @@
 #include "Kismet/GameplayStatics.h" //追加
 
 
+
+
 //////////////////////////////////////////////////////////////////////////
 // AkadaiProjectCharacter
 
@@ -35,6 +37,7 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 	Mesh1P->CastShadow = false;
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+
 
 }
 
@@ -124,19 +127,24 @@ void AkadaiProjectCharacter::SetupInput()//キー入力のセットアップ
 void AkadaiProjectCharacter::PressedB()//キーが入力された時の結果
 {
 	//アクターのパス。BP_Actorを生成したい場合後ろに .BP_Actor_C を追加する
-	FString aAssetPath = "/Script/CoreUObject.Class'/Script/kadaiProject.DartsActor'";
+	//FString aAssetPath = "/Script/kadaiProject.DartsActor";
 
 	//アセットを読み込む(同期)
-	TSubclassOf<AActor>aActorClass = TSoftClassPtr<AActor>
-		(FSoftObjectPath(*aAssetPath)).LoadSynchronous();
+	//TSubclassOf<AActor>aActorClass = TSoftClassPtr<AActor>
+		//(FSoftObjectPath(*aAssetPath)).LoadSynchronous();
 
 	//位置情報
-	FTransform aTransForm;
+	//FTransform aTransForm;
+
+	something = GetWorld()->SpawnActor<ADartsActor>(GetActorLocation(), GetActorRotation());
 	
-	if (aActorClass != nullptr) 
-	{
-		//スポーン
-		TObjectPtr<AActor> aActor = GetWorld()->SpawnActor<AActor>(aActorClass, aTransForm);
-	}
+	//if (aActorClass != nullptr) 
+	//{
+	//	//スポーン
+	//	//TObjectPtr<AActor> aActor = GetWorld()->SpawnActor<AActor>(aActorClass, aTransForm);
+	//	AActor* aActor = GetWorld()->SpawnActor<AActor>(aActorClass); // スポーン処理
+
+	//	
+	//}
 
 }
