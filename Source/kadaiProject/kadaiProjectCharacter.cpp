@@ -39,6 +39,16 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 
+	/*************/
+
+	//Input Mapping Contextを読み込み
+	DefaultMappingContext = LoadObject<UInputMappingContext>(NULL, TEXT("/Game/FirstPerson/Actions/IM_Controls"), NULL, LOAD_None, NULL);
+
+	//Input Actionの「IA_Look」を読み込む
+	LookAction = LoadObject<UInputAction>(NULL, TEXT("/Game/FirstPerson/Actions/IA_Look"), NULL, LOAD_None, NULL);
+
+	//Input Actionの「IA_Firing」を読み込む
+	FiringAction = LoadObject<UInputAction>(NULL, TEXT("/Game/FirstPerson/Actions/IA_Firing"), NULL, LOAD_None, NULL);
 }
 
 void AkadaiProjectCharacter::BeginPlay()
@@ -46,16 +56,29 @@ void AkadaiProjectCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	//Input設定を行う
+	SetupInput();
+
 	//Add Input Mapping Context
-	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	/*if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
-	}
+	}*/
 
 }
+
+void AkadaiProjectCharacter::SetupInput()
+{
+	//PlayerControllerを取得する
+	APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+
+	//入力を有効にする
+	EnableInput(controller);
+}
+
 
 //////////////////////////////////////////////////////////////////////////// Input
 

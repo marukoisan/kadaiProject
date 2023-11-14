@@ -78,6 +78,27 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 
+	/* MappingContext */
+	UPROPERTY(EditAnywhere, Category = Input)
+		class UInputMappingContext* DefaultMappingContext;
+
+	/* Action Input */
+	UPROPERTY(EditAnywhere, Category = Input)
+		class UInputAction* ActionInput;
+
+	/* Axis Input */
+	UPROPERTY(EditAnywhere, Category = Input)
+		class UInputAction* AxisInput;
+
+	/*  Firing Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPribateAccess = "true"))
+		class UInputAction* FiringAction;
+
+	/***********/
+
+	/* CharacterÇÃÉRÉìÉgÉçÅ[Éã */
+	void ControlCharacter(const FInputActionValue& Value);
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
