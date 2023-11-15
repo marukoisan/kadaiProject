@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
+
+
 #include "InputAction.h"                        // 追加
 #include "InputActionValue.h"                   // 追加
 #include "EnhancedInputComponent.h"             // 追加
@@ -8,6 +10,7 @@
 #include "DartsActor.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/ArrowComponent.h"			// 追加
 #include "kadaiProjectCharacter.generated.h"
 
 class UInputComponent;
@@ -79,8 +82,8 @@ protected:
 	void Look(const FInputActionValue& Value);
 
 	/* MappingContext */
-	UPROPERTY(EditAnywhere, Category = Input)
-		class UInputMappingContext* DefaultMappingContext;
+	//UPROPERTY(EditAnywhere, Category = Input)
+	//	class UInputMappingContext* DefaultMappingContext;
 
 	/* Action Input */
 	UPROPERTY(EditAnywhere, Category = Input)
@@ -98,6 +101,12 @@ protected:
 
 	/* Characterのコントロール */
 	void ControlCharacter(const FInputActionValue& Value);
+	/***********/
+
+	//プレイヤーの前にダーツを出すためのArrowComponent
+	UPROPERTY(VisibleAnywhere)
+	  TObjectPtr<UArrowComponent> Arrow;//Arrow変数を作成
+
 
 protected:
 	// APawn interface
