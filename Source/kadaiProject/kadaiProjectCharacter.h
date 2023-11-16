@@ -70,8 +70,10 @@ public:
 	/** Getter for the bool */
 	UFUNCTION(BlueprintCallable, Category = Weapon)
 	bool GetHasRifle();
-
-
+		
+	//プレイヤーの前にダーツを出すためのArrowComponent
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= Arrow)
+		TObjectPtr<UArrowComponent> Arrow1P;//Arrow変数を作成
 
 
 protected:
@@ -103,9 +105,7 @@ protected:
 	void ControlCharacter(const FInputActionValue& Value);
 	/***********/
 
-	//プレイヤーの前にダーツを出すためのArrowComponent
-	UPROPERTY(VisibleAnywhere)
-	  TObjectPtr<UArrowComponent> Arrow;//Arrow変数を作成
+
 
 
 protected:

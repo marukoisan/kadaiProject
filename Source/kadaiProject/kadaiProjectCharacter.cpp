@@ -41,11 +41,11 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 	/*************/
 
 	//Arrowを追加する
-	Arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponent"));
-	Arrow->SetupAttachment(Mesh1P);//アタッチする処理
+	Arrow1P = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrowttttt"));
+	Arrow1P->SetupAttachment(Mesh1P);//アタッチする処理
 
 	//Arrowコンポーネントの場所を変更する処理
-	Arrow->SetRelativeLocation(FVector(100.0f, 0.0f, 90.0f));
+	Arrow1P->SetRelativeLocation(FVector(200.0f, 0.0f, 140.0f));
 
 	/*************/
 
