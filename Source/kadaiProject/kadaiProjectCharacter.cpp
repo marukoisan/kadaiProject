@@ -8,6 +8,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h" //追加
+#include "Components/SceneComponent.h"    //追加
 
 
 
@@ -36,7 +37,8 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
-	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.0f, -150.f));
+	
 
 	/*************/
 
@@ -46,6 +48,8 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 
 	//Arrowコンポーネントの場所を変更する処理
 	Arrow1P->SetRelativeLocation(FVector(200.0f, 0.0f, 140.0f));
+	//Arrow1P->AddLocalRotation(FQuat(FVector(0,0,0), UE_PI / 2));
+	//Arrow1P->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
 
 	/*************/
 
@@ -166,8 +170,12 @@ void AkadaiProjectCharacter::PressedB()//キーが入力された時の結果
 
 	//位置情報
 	//FTransform aTransForm;
+	//Arrow1PのWorldTransformを取得する
+	const FTransform& WorldTransform = Arrow1P->GetComponentTransform();
+	FVector ActorLocation = Arrow1P->GetComponentLocation();
+	FRotator ActorRotator = Arrow1P->GetComponentRotation();
 
-	something = GetWorld()->SpawnActor<ADartsActor>(GetActorLocation(), GetActorRotation());
+	something = GetWorld()->SpawnActor<ADartsActor>(ActorLocation, ActorRotator);
 	
 	//if (aActorClass != nullptr) 
 	//{
