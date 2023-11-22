@@ -171,12 +171,16 @@ void AkadaiProjectCharacter::PressedB()//キーが入力された時の結果
 	//位置情報
 	//FTransform aTransForm;
 	//Arrow1PのWorldTransformを取得する
-	const FTransform& WorldTransform = Arrow1P->GetComponentTransform();
-	FVector ActorLocation = Arrow1P->GetComponentLocation();
-	FRotator ActorRotator = Arrow1P->GetComponentRotation();
+	//const FTransform& WorldTransform = Arrow1P->GetComponentTransform();
+	FVector ActorLocation = Arrow1P->GetComponentLocation();//ArrowComponentのLocationの情報を持った変数を作成する
+	FRotator ActorRotator = Arrow1P->GetComponentRotation();//ArrowComponentのRotationの情報を持った変数を作成する
 
+	//スポーンさせるための処理
 	something = GetWorld()->SpawnActor<ADartsActor>(ActorLocation, ActorRotator);
 	
+	//スポーンさせた後にスポーンしたアクターに力を加える処理
+	//something->AddActorLocalOffset
+
 	//if (aActorClass != nullptr) 
 	//{
 	//	//スポーン

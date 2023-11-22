@@ -23,8 +23,16 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UStaticMeshComponent> StaticMesh;
 
+	//Tick‚ÌŒÄ‚Ño‚µ
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	FVector Straight;//FVectorŒ^‚Ì•Ï”
+
+	
+
+	
 };

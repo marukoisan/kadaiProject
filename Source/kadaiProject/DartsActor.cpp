@@ -2,12 +2,13 @@
 
 
 #include "DartsActor.h"
+#include "kadaiProjectCharacter.h"
 
 // Sets default values
 ADartsActor::ADartsActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	//PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = true;
 
 	//SceneComponentを作成する
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
@@ -30,10 +31,10 @@ ADartsActor::ADartsActor()
 	// ArrowComponentの位置を設定する
 	//Arrow->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
 
-
-
 	//StaticMeshComponentをRootComponentにAttachする
 	StaticMesh->SetupAttachment(RootComponent);
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -43,4 +44,11 @@ void ADartsActor::BeginPlay()
 	
 }
 
+//Event tickの呼び出し
+void ADartsActor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//スポーンされたアクター(ダーツ)の移動処理
+	AddActorLocalOffset(FVector(5.0f, 0.0f, 0.0f));
+}
 
