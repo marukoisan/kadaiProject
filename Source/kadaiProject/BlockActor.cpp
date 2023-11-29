@@ -3,6 +3,7 @@
 
 #include "BlockActor.h"
 
+
 // Sets default values
 ABlockActor::ABlockActor()
 {
@@ -27,6 +28,16 @@ ABlockActor::ABlockActor()
 	//StaticMeshComponentをRootComponentにAttachする
 	StaticMesh->SetupAttachment(RootComponent);
 
+	/*CollisionBoxの設定*/
+	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
+	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));//CollisionBoxの大きさを決める
+	CollisionBox->SetCollisionProfileName("BlockAllDynamic");//アクターのコリジョンプリセットを変更
+	CollisionBox->SetupAttachment(RootComponent);
+
+	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &ABlockActor::OnOverlapBegin);//当たった瞬間のオーバーラップ
+	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &ABlockActor::OnOverlapEnd);//終わった瞬間のオーバーラップ
+	/*ここから上が追加した項目*/
+
 }
 
 // Called when the game starts or when spawned
@@ -40,6 +51,17 @@ void ABlockActor::NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other,cla
 {
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 	K2_DestroyActor();
+}
+
+//関数の宣言を行っています。
+void ABlockActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Green, "Overlap Begin Function Called");
+}
+
+void ABlockActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, "Overlap End Function Called");
 }
 
 // Called every frame
