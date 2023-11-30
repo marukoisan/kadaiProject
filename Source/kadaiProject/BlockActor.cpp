@@ -31,7 +31,7 @@ ABlockActor::ABlockActor()
 	/*CollisionBoxの設定*/
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
 	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));//CollisionBoxの大きさを決める
-	CollisionBox->SetCollisionProfileName("BlockAllDynamic");//アクターのコリジョンプリセットを変更
+	CollisionBox->SetCollisionProfileName("OverlapAllDynamic");//アクターのコリジョンプリセットを変更
 	CollisionBox->SetupAttachment(RootComponent);
 
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &ABlockActor::OnOverlapBegin);//当たった瞬間のオーバーラップ

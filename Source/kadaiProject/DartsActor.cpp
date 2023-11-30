@@ -34,21 +34,69 @@ ADartsActor::ADartsActor()
 	//StaticMeshComponentをRootComponentにAttachする
 	StaticMesh->SetupAttachment(RootComponent);
 
+	/*ボックスコリジョン(CollisionBox)の設定*/
+	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
+	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));
+	CollisionBox->SetCollisionProfileName("BlockAllDynamic");
+	CollisionBox->SetupAttachment(RootComponent);
 	
+
+	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &ADartsActor::OnOverlapBegin);
+	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &ADartsActor::OnOverlapEnd);
+	
+	
+}
+
+void ADartsActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+	//K2_DestroyActor();
+}
+
+void ADartsActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Green, "Overlap Begin Function Called");
+	//K2_DestroyActor();
+	
+	IsShow = false;//判定をfalseに変更
+
+	//スポーンされたアクター(ダーツ)の移動処理
+	//AddActorLocalOffset(FVector(0.0f, 0.0f, 0.0f));
+}
+
+void ADartsActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, "Overlap End Function Called");
+}
+
+void ADartsActor::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	K2_DestroyActor();
 }
 
 // Called when the game starts or when spawned
 void ADartsActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CollisionBox->OnComponentHit.AddDynamic(this, &ADartsActor::OnHit);
 	
 }
+
 
 //Event tickの呼び出し
 void ADartsActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	//スポーンされたアクター(ダーツ)の移動処理
-	AddActorLocalOffset(FVector(5.0f, 0.0f, 0.0f));
+	if (IsShow == true)//tureの間なら動く
+	{
+		AddActorLocalOffset(FVector(5.0f, 0.0f, 0.0f));
+	}
+	else
+	{
+		AddActorLocalOffset(FVector(0.0f, 0.0f, 0.0f));
+	}
+	
 }
 
