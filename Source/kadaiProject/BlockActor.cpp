@@ -30,7 +30,7 @@ ABlockActor::ABlockActor()
 
 	/*CollisionBoxの設定*/
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));//CollisionBoxの大きさを決める
+	CollisionBox->SetBoxExtent(FVector(150.0f, 150.0f, 150.0f));//CollisionBoxの大きさを決める
 	CollisionBox->SetCollisionProfileName("OverlapAllDynamic");//アクターのコリジョンプリセットを変更
 	CollisionBox->SetupAttachment(RootComponent);
 

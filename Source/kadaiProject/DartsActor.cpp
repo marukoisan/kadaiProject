@@ -36,7 +36,8 @@ ADartsActor::ADartsActor()
 
 	/*ボックスコリジョン(CollisionBox)の設定*/
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));
+	CollisionBox->SetBoxExtent(FVector(1.0f, 1.0f, 1.0f));//元の大きさを決める
+	CollisionBox->SetRelativeLocation(FVector(16.0f, 0.25f, 2.25f));//位置の変更
 	CollisionBox->SetCollisionProfileName("BlockAllDynamic");
 	CollisionBox->SetupAttachment(RootComponent);
 	
@@ -91,7 +92,12 @@ void ADartsActor::Tick(float DeltaTime)
 	//スポーンされたアクター(ダーツ)の移動処理
 	if (IsShow == true)//tureの間なら動く
 	{
-		AddActorLocalOffset(FVector(5.0f, 0.0f, 0.0f));
+		AddActorLocalOffset(FVector(straight, 0.0f, under));
+		--under;
+		DefaultSceneRoot->SetRelativeRotation(FRotator(width, 0.0f, 0.0f));
+		--width;
+
+
 	}
 	else
 	{

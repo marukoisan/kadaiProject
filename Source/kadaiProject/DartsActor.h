@@ -17,11 +17,11 @@ public:
 	ADartsActor();
 
 	//DartsActor‚ÌUSceneComponent
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		TObjectPtr<USceneComponent> DefaultSceneRoot;
 
 	//@StaticMesh Component‚Ì
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		TObjectPtr<UStaticMeshComponent> StaticMesh;
 
 	//“–‚½‚è”»’è—p‚ÌŠÖ”
@@ -68,6 +68,8 @@ protected:
 	FVector Straight;//FVectorŒ^‚Ì•Ï”
 
 	bool IsShow = true;
-
+	float under = 10;
+	float straight = 10;
+	float width = 25;
 	
 };
