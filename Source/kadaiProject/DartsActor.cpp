@@ -92,10 +92,11 @@ void ADartsActor::Tick(float DeltaTime)
 	//スポーンされたアクター(ダーツ)の移動処理
 	if (IsShow == true)//tureの間なら動く
 	{
+		//DefaultSceneRoot->SetRelativeRotation(FRotator(width, 0.0f, 0.0f));
+		//--width;
 		AddActorLocalOffset(FVector(straight, 0.0f, under));
-		--under;
-		DefaultSceneRoot->SetRelativeRotation(FRotator(width, 0.0f, 0.0f));
-		--width;
+		under -= number;
+
 
 
 	}

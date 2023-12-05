@@ -47,8 +47,8 @@ AkadaiProjectCharacter::AkadaiProjectCharacter()
 	Arrow1P->SetupAttachment(Mesh1P);//アタッチする処理
 
 	//Arrowコンポーネントの場所を変更する処理
-	Arrow1P->SetRelativeLocation(FVector(120.0f, 0.0f, 140.0f));
-	Arrow1P->SetRelativeRotation(FRotator(15.0f, 0.0f, 0.0f));
+	Arrow1P->SetRelativeLocation(FVector(90.0f, 0.0f, 130.0f));
+	Arrow1P->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
 	//Arrow1P->AddLocalRotation(FQuat(FVector(0,0,0), UE_PI / 2));
 	//Arrow1P->SetWorldRotation(FRotator(0.0f, 0.0f, 90.0f));
 

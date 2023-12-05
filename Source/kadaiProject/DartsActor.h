@@ -69,6 +69,7 @@ protected:
 
 	bool IsShow = true;
 	float under = 10;
+	double number = 0.8;
 	float straight = 10;
 	float width = 25;
 	
