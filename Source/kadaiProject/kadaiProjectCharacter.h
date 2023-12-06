@@ -75,6 +75,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= Arrow)
 		TObjectPtr<UArrowComponent> Arrow1P;//Arrow•Ï”‚ğì¬
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 
 protected:
 	/** Called for movement input */
@@ -106,7 +109,7 @@ protected:
 	/***********/
 
 
-
+	
 
 protected:
 	// APawn interface
@@ -129,6 +132,14 @@ private:
 
 		//ƒƒ“ƒo•Ï”
 	ADartsActor* something;
+	
+	//‡Œv‚Ì“_”‚ğ‚Á‚Ä‚¢‚é
+	int32 testscore = 100;
+
+	
+	const float Duration = 10.0f;
+
+	const FLinearColor TextColor = FLinearColor(0.0, 0.66, 1.0);
 
 };
 

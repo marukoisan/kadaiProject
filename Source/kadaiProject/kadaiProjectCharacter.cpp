@@ -9,6 +9,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h" //’Ç‰Á
 #include "Components/SceneComponent.h"    //’Ç‰Á
+#include "Kismet/KismetMathLibrary.h" // ’Ç‰Á
 
 
 
@@ -18,6 +19,9 @@
 
 AkadaiProjectCharacter::AkadaiProjectCharacter()
 {
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+
 	// Character doesnt have a rifle at start
 	bHasRifle = false;
 	
@@ -191,4 +195,30 @@ void AkadaiProjectCharacter::PressedB()//ƒL[‚ª“ü—Í‚³‚ê‚½‚ÌŒ‹‰Ê
 	//	
 	//}
 
+}
+//Event tick‚ÌŒÄ‚Ño‚µ
+void AkadaiProjectCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (testscore == 0)
+	{
+		UKismetSystemLibrary::PrintString(
+			this
+			, "OK"
+			, true
+			, true
+			, TextColor
+			, Duration);
+	}
+	else 
+	{
+		UKismetSystemLibrary::PrintString(
+			this
+			, "NG"
+			, true
+			, true
+			, TextColor
+			, Duration);
+	}
 }
