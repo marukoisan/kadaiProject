@@ -60,4 +60,6 @@ public:
 			int32 OtherBodyIndex);
 
 
+	//SetŠÖ”int32
+
 };

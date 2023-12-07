@@ -75,10 +75,10 @@ void AtestActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 	{
 		UE_LOG(LogTemp, Display, TEXT("HiiiiiiiiT"));
 		
-		/*if (ProjectCharacter != nullptr)
+		if (ProjectCharacter != nullptr)
 		{
-			ProjectCharacter->GetScore();
-		}*/
+			ProjectCharacter->SetScore(100);
+		}
 
 	}
 }

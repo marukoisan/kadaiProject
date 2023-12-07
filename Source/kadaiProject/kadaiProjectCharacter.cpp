@@ -197,9 +197,18 @@ void AkadaiProjectCharacter::PressedB()//ƒL[‚ª“ü—Í‚³‚ê‚½‚ÌŒ‹‰Ê
 
 }
 
+//GetŠÖ”
 int AkadaiProjectCharacter::GetScore()
 {
 	return testscore;
+}
+
+//SetŠÖ”g‚¤‚Æ‚«‚Éˆø‚«‚½‚¢”š‚ğ“ü‚ê‚é
+int AkadaiProjectCharacter::SetScore(int32 testvalue)
+{
+	testscore = testscore - testvalue;
+	return testscore;
+
 }
 
 
