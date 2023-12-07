@@ -74,6 +74,10 @@ public:
 	//プレイヤーの前にダーツを出すためのArrowComponent
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= Arrow)
 		TObjectPtr<UArrowComponent> Arrow1P;//Arrow変数を作成
+	
+	//ScoreのGet関数
+	int GetScore();
+
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

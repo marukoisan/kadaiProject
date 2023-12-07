@@ -196,6 +196,13 @@ void AkadaiProjectCharacter::PressedB()//ƒL[‚ª“ü—Í‚³‚ê‚½‚ÌŒ‹‰Ê
 	//}
 
 }
+
+int AkadaiProjectCharacter::GetScore()
+{
+	return testscore;
+}
+
+
 //Event tick‚ÌŒÄ‚Ño‚µ
 void AkadaiProjectCharacter::Tick(float DeltaTime)
 {
