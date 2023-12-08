@@ -34,7 +34,7 @@ AtestActor::AtestActor()
 
 	/*CollisionBoxの設定*/
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-	CollisionBox->SetBoxExtent(FVector(150.0f, 150.0f, 150.0f));//CollisionBoxの大きさを決める
+	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));//CollisionBoxの大きさを決める
 	CollisionBox->SetCollisionProfileName("OverlapAllDynamic");//アクターのコリジョンプリセットを変更
 	CollisionBox->SetupAttachment(RootComponent);
 
@@ -42,7 +42,8 @@ AtestActor::AtestActor()
 
 	//大きさ変更
 	this->SetActorRelativeScale3D(FVector(0.25f, 0.25f, 0.25f));
-
+	StaticMesh->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
+	CollisionBox->SetRelativeScale3D(FVector(2.0f, 2.0f, 2.0f));
 
 
 
@@ -62,12 +63,12 @@ void AtestActor::BeginPlay()
 void AtestActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Green, "Overlap Begin Function Called");
-	ACharacter* aPlayerCharacter = UGameplayStatics::GetPlayerCharacter(this->GetWorld(), 0);
+	ACharacter* aPlayerCharacter = UGameplayStatics::GetPlayerCharacter(this->GetWorld(), 0);//Get playerCharacter
 
 	/*下のものはイベントグラフの中でいうCast toになります。*/
 	ADartsActor* Darts = Cast<ADartsActor>(OtherActor);
 	AkadaiProjectCharacter* ProjectCharacter = Cast<AkadaiProjectCharacter>(aPlayerCharacter);
-
+	/******************************************************/
 	
 
 
@@ -77,7 +78,8 @@ void AtestActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 		
 		if (ProjectCharacter != nullptr)
 		{
-			ProjectCharacter->SetScore(100);
+			ProjectCharacter->SetScore(variable);
+			UE_LOG(LogTemp, Display, TEXT("100000000000"));
 		}
 
 	}

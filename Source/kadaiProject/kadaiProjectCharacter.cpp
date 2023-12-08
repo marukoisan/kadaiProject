@@ -221,7 +221,7 @@ void AkadaiProjectCharacter::Tick(float DeltaTime)
 	{
 		UKismetSystemLibrary::PrintString(
 			this
-			, "OK"
+			, FString::FromInt(testscore)
 			, true
 			, true
 			, TextColor

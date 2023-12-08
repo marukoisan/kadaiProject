@@ -41,6 +41,9 @@ public:
 			bool bFromSweep,
 			const FHitResult& SweepResult);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "variable")
+		int32 variable;
+
 protected:
 
 

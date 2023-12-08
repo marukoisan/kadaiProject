@@ -27,6 +27,7 @@ ADartsActor::ADartsActor()
 
 	//StaticMesh‚ðStaticMeshComponent‚ÉÝ’è‚·‚é
 	StaticMesh->SetStaticMesh(Mesh);
+	StaticMesh->SetCollisionProfileName("NoCollision");
 
 	// ArrowComponent‚ÌˆÊ’u‚ðÝ’è‚·‚é
 	//Arrow->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
