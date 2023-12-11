@@ -28,6 +28,7 @@ ADartsActor::ADartsActor()
 	//StaticMeshをStaticMeshComponentに設定する
 	StaticMesh->SetStaticMesh(Mesh);
 	StaticMesh->SetCollisionProfileName("NoCollision");
+	StaticMesh->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
 
 	// ArrowComponentの位置を設定する
 	//Arrow->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
@@ -36,22 +37,30 @@ ADartsActor::ADartsActor()
 	StaticMesh->SetupAttachment(RootComponent);
 
 	/*ボックスコリジョン(CollisionBox)の設定*/
-	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
-	CollisionBox->SetBoxExtent(FVector(1.0f, 1.0f, 1.0f));//元の大きさを決める
-	CollisionBox->SetRelativeLocation(FVector(16.0f, 0.25f, 2.25f));//位置の変更
-	CollisionBox->SetCollisionProfileName("BlockAllDynamic");
-	CollisionBox->SetupAttachment(RootComponent);
+	//CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
+	//CollisionBox->SetBoxExtent(FVector(1.0f, 1.0f, 1.0f));//元の大きさを決める
+	//CollisionBox->SetRelativeLocation(FVector(8.0f, 0.15f, 1.0f));//位置の変更
+	//CollisionBox->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
+	//CollisionBox->SetCollisionProfileName("BlockAllDynamic");
+	//CollisionBox->SetupAttachment(RootComponent);
 	
+	CollisionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionSphere"));
+	CollisionSphere->SetSphereRadius(1.5f);//元の大きさを決める
+	CollisionSphere->SetRelativeLocation(FVector(8.0f, 0.0f, 1.1f));//位置の変更
+	CollisionSphere->SetRelativeScale3D(FVector(1.0f, 0.75f, 1.0f));
+	CollisionSphere->SetCollisionProfileName("BlockAllDynamic");
+	CollisionSphere->SetupAttachment(RootComponent);
 
-	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &ADartsActor::OnOverlapBegin);
-	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &ADartsActor::OnOverlapEnd);
+
+	CollisionSphere->OnComponentBeginOverlap.AddDynamic(this, &ADartsActor::OnOverlapBegin);
+	CollisionSphere->OnComponentEndOverlap.AddDynamic(this, &ADartsActor::OnOverlapEnd);
 	
 	
 }
 
 void ADartsActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
-	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+	//Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 	//K2_DestroyActor();
 }
 
@@ -81,7 +90,7 @@ void ADartsActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CollisionBox->OnComponentHit.AddDynamic(this, &ADartsActor::OnHit);
+	CollisionSphere->OnComponentHit.AddDynamic(this, &ADartsActor::OnHit);
 	
 }
 

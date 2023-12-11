@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"//ボックスコリジョン用の追加要素
+#include "Components/SphereComponent.h"
 #include "DartsActor.generated.h"
 
 UCLASS()
@@ -29,7 +30,7 @@ public:
 
 	//ボックスコリジョンの変数
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UBoxComponent> CollisionBox;
+		TObjectPtr<USphereComponent> CollisionSphere;
 
 	// Overlap
 	UFUNCTION()

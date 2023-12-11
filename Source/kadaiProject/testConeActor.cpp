@@ -40,7 +40,7 @@ AtestConeActor::AtestConeActor()
 
 	//‘å‚«‚³•ÏX
 	this->SetActorRelativeScale3D(FVector(0.25f, 0.25f, 0.25f));
-	StaticMesh->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
+	StaticMesh->SetRelativeScale3D(FVector(0.0f, 0.2f, 0.5f));
 	CollisionBox->SetRelativeScale3D(FVector(2.0f, 2.0f, 2.0f));
 
 }
