@@ -47,7 +47,7 @@ ADartsActor::ADartsActor()
 	CollisionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionSphere"));
 	CollisionSphere->SetSphereRadius(1.5f);//Œ³‚Ì‘å‚«‚³‚ðŒˆ‚ß‚é
 	CollisionSphere->SetRelativeLocation(FVector(8.0f, 0.0f, 1.1f));//ˆÊ’u‚Ì•ÏX
-	CollisionSphere->SetRelativeScale3D(FVector(1.0f, 0.75f, 1.0f));
+	CollisionSphere->SetRelativeScale3D(FVector(1.0f, 0.25f, 1.0f));
 	CollisionSphere->SetCollisionProfileName("BlockAllDynamic");
 	CollisionSphere->SetupAttachment(RootComponent);
 
