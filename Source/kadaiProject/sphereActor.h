@@ -5,16 +5,16 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"//ボックスコリジョン用の追加要素
-#include "testConeActor.generated.h"
+#include "sphereActor.generated.h"
 
 UCLASS()
-class KADAIPROJECT_API AtestConeActor : public AActor
+class KADAIPROJECT_API AsphereActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AtestConeActor();
+	AsphereActor();
 
 	//DartsActorのUSceneComponent
 	UPROPERTY(EditAnywhere)
@@ -24,8 +24,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UStaticMeshComponent> StaticMesh;
 
-	//virtual void NotifyHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
-
+	//ボックスコリジョンの変数
+	/*UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<USphereComponent> CollisionSphere;*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		TObjectPtr<UBoxComponent> CollisionBox;
 
@@ -43,9 +44,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "variable")
 		int32 variable;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "variable")
-	//	int32 element;
 
 protected:
 

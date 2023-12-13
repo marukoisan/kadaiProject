@@ -81,6 +81,8 @@ public:
 	//Score‚ÌSetŠÖ”
 	int SetScore(int32 testvalue);
 
+	int ProductSetScore(int32 value, int32 product);
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

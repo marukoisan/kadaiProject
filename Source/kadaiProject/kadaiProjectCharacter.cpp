@@ -211,6 +211,12 @@ int AkadaiProjectCharacter::SetScore(int32 testvalue)
 
 }
 
+int AkadaiProjectCharacter::ProductSetScore(int32 value, int32 product)
+{
+	testscore = testscore - (value * product);
+	return testscore;
+}
+
 
 //Event tick‚ÌŒÄ‚Ño‚µ
 void AkadaiProjectCharacter::Tick(float DeltaTime)
