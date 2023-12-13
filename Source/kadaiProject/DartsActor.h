@@ -69,9 +69,9 @@ protected:
 	FVector Straight;//FVectorŒ^‚Ì•Ï”
 
 	bool IsShow = true;
-	float under = 11;
+	float under = 10;
 	double number = 0.8;
-	float straight = 11;
+	float straight = 10;
 	float width = 25;
 	
 };
