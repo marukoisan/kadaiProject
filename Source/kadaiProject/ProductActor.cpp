@@ -43,6 +43,9 @@ AProductActor::AProductActor()
 	StaticMesh->SetRelativeScale3D(FVector(0.0f, 0.2f, 0.5f));
 	CollisionBox->SetRelativeScale3D(FVector(2.0f, 2.0f, 2.0f));
 
+	//Œ©‚¦‚È‚­‚È‚éˆ—
+	this->SetActorHiddenInGame(true);
+
 }
 
 // Called when the game starts or when spawned
