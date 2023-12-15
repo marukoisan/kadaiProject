@@ -10,6 +10,9 @@
 #include "Kismet/GameplayStatics.h" //追加
 #include "Components/SceneComponent.h"    //追加
 #include "Kismet/KismetMathLibrary.h" // 追加
+#include "DartsActor.h" //追加
+#include "Kismet/KismetSystemLibrary.h"
+
 
 
 
@@ -183,6 +186,9 @@ void AkadaiProjectCharacter::PressedB()//キーが入力された時の結果
 	//スポーンさせるための処理
 	something = GetWorld()->SpawnActor<ADartsActor>(ActorLocation, ActorRotator);
 	
+	//配列の数を追加していく
+	testarrey =Fruits.Add(something);
+
 	//スポーンさせた後にスポーンしたアクターに力を加える処理
 	//something->AddActorLocalOffset
 
@@ -232,8 +238,20 @@ void AkadaiProjectCharacter::Tick(float DeltaTime)
 			, true
 			, TextColor
 			, Duration);
+
+		
 	}
-	else 
+	else if(testscore < 0)
+	{
+		testscore = 301;
+		ADartsActor* Darts = Cast<ADartsActor>(something);
+
+		if (Darts != nullptr)
+		{
+			something->K2_DestroyActor();
+		}
+	}
+	else
 	{
 		UKismetSystemLibrary::PrintString(
 			this
@@ -243,4 +261,5 @@ void AkadaiProjectCharacter::Tick(float DeltaTime)
 			, TextColor
 			, Duration);
 	}
+
 }

@@ -140,10 +140,15 @@ private:
 
 		//メンバ変数
 	ADartsActor* something;
+
+	//配列作成
+	TArray<ADartsActor*> Fruits = {};
 	
 	//合計の点数を持っている
-	int32 testscore = 100;
+	int32 testscore = 301;
 
+	//配列格納の用の変数
+	int testarrey;
 	
 	const float Duration = 10.0f;
 
